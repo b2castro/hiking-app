@@ -1,0 +1,9 @@
+Proposal
+Team Name: 2Squared
+Team Members: Bryle Castro, Hansol You, Julian Leung, Karanbir Bains
+Team Idea: 
+	We are thinking about a few ideas for our application utilizing real world data. Our first idea is to implement a strength tracker. The application will allow the user to record the weight that they are lifting for each exercise and see how they have improved over different time frames. The Application will also use data from other users in similar weight groups and will show how your own weight might differ from peers in the same weight class. 
+
+	Another Idea we thought about was a virtual interactive hiking application. This app will allow the user to compare different hikes and be able to see what they will encounter on the hike from other users. This allows users to not only make more informed decisions when they decide on a hike, but also allows the user to participate and comment or post things they found interesting on the hike that they feel others may also enjoy. Using gps we can tag what landmark is where on the hike. The user can also “track” their hike. Upon arriving at the start of the trial users will be able to see not only how long it took them to complete the trial but also how their rank amongst other users who have done the hike and get a better sense of how long it may take to finish the hike.
+
+	A third idea we had was to make a general purpose tournament matcher. For a lot of casual events such as TCG tournaments or group sports events, there really is no good way of randomly matching up teams other than dice rolls, coin flips, and such. It gets even more complicated when said tournament is trying to balance out teams in terms of power level. Our application is designed to have individual users make matches based on tiering systems that a user designates, or even without the tiering system. If the user wishes, they may keep win rates for specific matches and players / users. 
