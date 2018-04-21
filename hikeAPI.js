@@ -1,8 +1,8 @@
-function displayTrailInfo() {
+function displayTrailInfo(lati,longi) {
 
         //var trail = $(this).attr("data-name");
-        let lat = 40.0274;
-        let long = -105.2519;
+        let lat = lati
+        let long = longi;
         let maxDistance = 10;
         //https://www.hikingproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&key=200252138-f373bf62d2f3d526e56392c58af99811                                                                                                 
         var queryURL = "https://www.hikingproject.com/data/get-trails?" + 'lat=' lat + '&lon=' + long + '&maxDistance=' + maxDistance || 10 + "&key=200252138-f373bf62d2f3d526e56392c58af99811";
