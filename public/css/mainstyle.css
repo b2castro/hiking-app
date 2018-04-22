@@ -43,3 +43,32 @@ img.logo {
     width: 400px;
     height: 400px;
 }
+
+.flex-container{
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-item{
+    margin: auto;
+    text-align: center;
+}
+
+.comment {
+    font-size: 150%;
+    border: 5px solid gray;
+    padding: 10px;
+    width: 300px;
+    margin: auto;
+}
+
+.box {
+    border: 5px solid black;
+    padding: 10px;
+    width: 900px;
+    margin: auto;
+}
+
+.flex-container2 {
+    display: flex;
+}
