@@ -16,8 +16,11 @@ function displayTrailInfo(lati, longi) {
         }).done(function(response) {
           for (var i = 0; i < response.trails.length; i++) {
             // Creating a div to hold the trail
-            var trailDiv = $("<div class='trail'>");
+            var anchor = $("<a>").attr("href", "/trailPage");
+            var trailDiv = $("<div class='trail' href='/trailPage'>");
 
+            anchor.append(trailDiv);
+              
             // Storing the rating data
             let name = response.trails[i].name;
 
@@ -64,7 +67,8 @@ function displayTrailInfo(lati, longi) {
             trailDiv.append(image);
             
             // Putting the entire trail above the previous trails
-            $("#trails-view").prepend(trailDiv);
+            $("#trails-view").prepend(anchor);
+              
           };//end of for loop. 
         });// end of done function 
       }// end of displayTrailInfo function 
