@@ -30,10 +30,10 @@ Compared to the paper prototypes, the "find hike" page became the home page of t
 search bar instead of multiple search bars. Instead of displaying a table of trails and details 
 pertaining to the trails, a centered list of images and details are shown to the user after a search.
 The details pertaining to the trails that will be displayed will only be the name of the trail, the 
-rating of the trail, how many people rated the trail,the summary of about the trail ,and the difficulty 
+rating of the trail, how many people rated the trail,the summary of about the trail,and the difficulty 
 of the trail (The city the trail is located and the distance the trail covers was removed because the 
-search bar already provides trails near the user along with the difficulty level of the trail). The 
-nav bar was also removed because it is no longer needed. 
+search bar already provides trails near the user along with the difficulty level of the trail). Additionally,
+the rating and difficulty are displayed as icons instead of numbers. The nav bar was also removed because it is no longer needed. 
 
 Furthermore, the second page of the application: the page that allows users to add pictures and comments
 at specific parts of the trail was kept relatively the same; a map of the trail with markers will still 
