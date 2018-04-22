@@ -24,13 +24,11 @@ function displayTrailInfo(lati, longi) {
             let stars = Math.floor(response.trails[i].stars);
             let starVotes = response.trails[i].starVotes;
             let difficulty = response.trails[i].difficulty;
-            
+            let summary = response.trails[i].summary;
             // Creating an element to have the rating displayed
             var title = $("<h1>").text(name); 
             
             var string = "Star Rating: ";
-            console.log("the starts for the loop are", stars);
-            
             for (var j = 0; j < 5; j++) {
                 if(j < stars){
                     string = string + '\u2605';
@@ -39,10 +37,48 @@ function displayTrailInfo(lati, longi) {
                 }
             }
 
-            console.log(" the string after stars is: ", string)
+            let string2 = "Difficulty: ";
+            var h2Three = $("<h2>").text(string2);
+            var tree1 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
+            var tree2 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
+            var tree3 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
+            var tree4 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
+            var tree5 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
+            
+            switch(difficulty) {
+                case "green":
+                    h2Three.append(tree1);
+                    break;
+                case "greenBlue":
+                    h2Three.append(tree1);
+                    h2Three.append(tree2);
+                    break;
+                case "blue":
+                    h2Three.append(tree1);
+                    h2Three.append(tree2);
+                    h2Three.append(tree3);
+                    break;
+                case "blueBlack":
+                    h2Three.append(tree1);
+                    h2Three.append(tree2);
+                    h2Three.append(tree3);
+                    h2Three.append(tree4);
+                    break;
+                case "black":
+                    h2Three.append(tree1);
+                    h2Three.append(tree2);
+                    h2Three.append(tree3);
+                    h2Three.append(tree4);
+                    h2Three.append(tree5);
+                    break;
+                default:
+                    console.log("we fucked");
+                    break;
+            }
             var h2One = $("<h2>").text(string);
             var h2Two = $("<h2>").text("Total Votes: " + starVotes);
-            var h2Three = $("<h2>").text("Difficulty: " + difficulty);
+            
+            var h2Four = $("<h2>").text("Summary: " + summary);
             var imgURL;
             if(response.trails[i].imgMedium){
                 imgURL = response.trails[i].imgMedium;
@@ -59,6 +95,7 @@ function displayTrailInfo(lati, longi) {
             trailDiv.append(h2One);
             trailDiv.append(h2Two);
             trailDiv.append(h2Three);
+            trailDiv.append(h2Four);
             
             // Appending the image
             trailDiv.append(image);
