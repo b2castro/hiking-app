@@ -1,3 +1,4 @@
+
 function displayTrailInfo(lati, longi) {
 
         //var trail = $(this).attr("data-name");
@@ -19,6 +20,7 @@ function displayTrailInfo(lati, longi) {
 
             // Storing the rating data
             let name = response.trails[i].name;
+
             let stars = Math.floor(response.trails[i].stars);
             let starVotes = response.trails[i].starVotes;
             let difficulty = response.trails[i].difficulty;
@@ -47,6 +49,7 @@ function displayTrailInfo(lati, longi) {
             }else{
                 imgURL = "images/trailSearch.jpg";
             }
+
 
             // Creating an element to hold the image
             var image = $("<img>").attr("src", imgURL);
