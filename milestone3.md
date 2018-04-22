@@ -3,7 +3,11 @@ Team 2Squared
 Team Members: Bryle Castro, Hansol You, Julian Leung, Karanbir Bains
 
 
-Screen 1: 
+Screen 1 HomePage: 
+
+![capture](https://user-images.githubusercontent.com/7214905/39101170-e0025f02-464a-11e8-8db6-1ae5283924a7.PNG)
+
+
 
 
 
@@ -11,6 +15,7 @@ Screen 1:
 
 Screen 2: 
 
+![capture](https://user-images.githubusercontent.com/7214905/39101197-4cf866e2-464b-11e8-9dcd-0addcc62eed4.PNG)
 
 
 The main difference between the paper prototypes and the actual implementations of our 
