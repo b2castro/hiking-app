@@ -1,4 +1,5 @@
-function displayTrailInfo(lati,longi) {
+
+function displayTrailInfo(lati, longi) {
 
         //var trail = $(this).attr("data-name");
         let lat = lati;
@@ -20,7 +21,10 @@ function displayTrailInfo(lati,longi) {
 
             // Storing the rating data
             let name = response.trails[i].name;
-            let stars = response.trails[i].stars;
+
+            let stars = Math.floor(response.trails[i].stars);
+            console.log("the star scroe is ", stars);
+
             let starVotes = response.trails[i].starVotes;
             
             let difficulty = response.trails[i].difficulty;
@@ -29,9 +33,20 @@ function displayTrailInfo(lati,longi) {
             // Creating an element to have the rating displayed
             var title = $("<h1>").text(name); 
             var h2One = $("<h2>").text("Star Rating: " + stars);
+            
+            // for (var i = 0; i < stars; i++) {
+            //     h2One.text(h2One.text() + '\u2605');
+            // }
+
             var h2Two = $("<h2>").text("Star Votes: " + starVotes);
             var h2Three = $("<h2>").text("Difficulty: " + difficulty);
-            var imgURL = response.trails[i].imgMedium;
+            var imgURL;
+            if(response.trails[i].imgMedium){
+                imgURL = response.trails[i].imgMedium;
+            }else{
+                imgURL = "images/trailSearch.jpg";
+            }
+
 
             // Creating an element to hold the image
             var image = $("<img>").attr("src", imgURL);
@@ -49,15 +64,6 @@ function displayTrailInfo(lati,longi) {
             $("#trails-view").prepend(trailDiv);
           };//end of for loop. 
           
-   //        {{#each trails}}
-			// 	<div class="trail col-xs-4 col-sm-4 col-md-4 col-lg-4 card" id="{{id}}">
-			// 		<h1 class="Title">{{name}}</h1>
-			// 		<p>Star Rating: + {{stars}} </p>
-			// 		<p>Star Votes: + {{starVotes}} </p>
-			// 		<p>Difficulty: + {{difficulty}} </p>
-			// 		<img src="{{imgMedium}}" class="img">
-			// 	</div>
-			// {{/each}}
 
         });// end of done function 
       }// end of displayTrailInfo function 
