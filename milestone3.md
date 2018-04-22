@@ -26,7 +26,7 @@ search bar instead of multiple search bars. Instead of displaying a table of tra
 pertaining to the trails, a centered list of images and details are shown to the user after a search.
 The details pertaining to the trails that will be displayed will only be the name of the trail, the 
 rating of the trail, how many people rated the trail,the summary of about the trail ,and the difficulty 
-of the trail (The city the trail is located and the distance the trail covered was removed because the 
+of the trail (The city the trail is located and the distance the trail covers was removed because the 
 search bar already provides trails near the user along with the difficulty level of the trail). The 
 nav bar was also removed because it is no longer needed. 
 
