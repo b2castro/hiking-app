@@ -14,28 +14,32 @@ function displayTrailInfo(lati, longi) {
           method: "GET"
         }).done(function(response) {
           for (var i = 0; i < response.trails.length; i++) {
-             console.log("this is in the forLoop", i);
             // Creating a div to hold the trail
             var trailDiv = $("<div class='trail'>");
 
             // Storing the rating data
             let name = response.trails[i].name;
             let stars = Math.floor(response.trails[i].stars);
-            console.log("the star scroe is ", stars);
             let starVotes = response.trails[i].starVotes;
-            
             let difficulty = response.trails[i].difficulty;
-           
             
             // Creating an element to have the rating displayed
             var title = $("<h1>").text(name); 
-            var h2One = $("<h2>").text("Star Rating: " + stars);
             
-            // for (var i = 0; i < stars; i++) {
-            //     h2One.text(h2One.text() + '\u2605');
-            // }
+            var string = "Star Rating: ";
+            console.log("the starts for the loop are", stars);
+            
+            for (var j = 0; j < 5; j++) {
+                if(j < stars){
+                    string = string + '\u2605';
+                } else {
+                    string = string + '\u2606';
+                }
+            }
 
-            var h2Two = $("<h2>").text("Star Votes: " + starVotes);
+            console.log(" the string after stars is: ", string)
+            var h2One = $("<h2>").text(string);
+            var h2Two = $("<h2>").text("Total Votes: " + starVotes);
             var h2Three = $("<h2>").text("Difficulty: " + difficulty);
             var imgURL;
             if(response.trails[i].imgMedium){
@@ -59,16 +63,5 @@ function displayTrailInfo(lati, longi) {
             // Putting the entire trail above the previous trails
             $("#trails-view").prepend(trailDiv);
           };//end of for loop. 
-          
-   //        {{#each trails}}
-            //  <div class="trail col-xs-4 col-sm-4 col-md-4 col-lg-4 card" id="{{id}}">
-            //      <h1 class="Title">{{name}}</h1>
-            //      <p>Star Rating: + {{stars}} </p>
-            //      <p>Star Votes: + {{starVotes}} </p>
-            //      <p>Difficulty: + {{difficulty}} </p>
-            //      <img src="{{imgMedium}}" class="img">
-            //  </div>
-            // {{/each}}
-
         });// end of done function 
       }// end of displayTrailInfo function 
