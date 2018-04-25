@@ -16,10 +16,10 @@ function displayTrailInfo(lati, longi) {
         }).done(function(response) {
           for (var i = 0; i < response.trails.length; i++) {
             // Creating a div to hold the trail
-            var anchor = $("<a>").attr("href", "/trailPage");
-            var trailDiv = $("<div class='trail' href='/trailPage'>");
+            // var anchor = $("<a>").attr("href", "/trailPage");
+            var trailDiv = $("<div class='trail col-xs-5 col-sm-5 col-md-5 col-lg-5' href='/trailPage'>");
 
-            anchor.append(trailDiv);
+            //anchor.append(trailDiv);
               
             // Storing the rating data
             let name = response.trails[i].name;
@@ -29,8 +29,9 @@ function displayTrailInfo(lati, longi) {
             let difficulty = response.trails[i].difficulty;
             let summary = response.trails[i].summary;
             // Creating an element to have the rating displayed
-            var title = $("<h1>").text(name); 
-            
+            var anchor = $("<a href='/trailPage'>")            
+            anchor.append(trailDiv);
+            var title = $("<h1>").text(name);
             var string = "Star Rating: ";
             for (var j = 0; j < 5; j++) {
                 if(j < stars){
@@ -40,8 +41,7 @@ function displayTrailInfo(lati, longi) {
                 }
             }
 
-            let string2 = "Difficulty: ";
-            var h2Three = $("<h2>").text(string2);
+            var h2Three = $("<h2>").text("Difficulty: ");
             var tree1 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
             var tree2 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
             var tree3 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
@@ -75,13 +75,13 @@ function displayTrailInfo(lati, longi) {
                     h2Three.append(tree5);
                     break;
                 default:
-                    console.log("we fucked");
+                    console.log("uh oh");
                     break;
             }
             var h2One = $("<h2>").text(string);
             var h2Two = $("<h2>").text("Total Votes: " + starVotes);
             
-            var h2Four = $("<h2>").text("Summary: " + summary);
+            var h2Four = $("<h2 id='summary'>").text("Summary: " + summary);
             var imgURL;
             if(response.trails[i].imgMedium){
                 imgURL = response.trails[i].imgMedium;

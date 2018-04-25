@@ -29,6 +29,7 @@ img.logo {
 .searchBar input{
     width: 500px;
     height: 30px;
+    float: center;
 }
 
 .searchBar button{
@@ -37,11 +38,29 @@ img.logo {
 
 .trail{
     text-align: center;
+    border-style: solid;
+    border-color: black;
+    background-color: gray;
+    margin: 2px 2px 2px 2px;
+
+}
+
+.trail h2{
+    color: green;
+}
+
+.trail h1{
+    color: white;
+}
+.trail #summary{
+    height: 180px;
 }
 
 .trail img {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
+    float: center;
+    margin-bottom: 8px;
 }
 
 .flex-container{
