@@ -39,12 +39,18 @@ img.logo {
 .trail{
     text-align: center;
     border-style: solid;
+    border-width: thick;
     border-color: black;
+    border-radius: 25px;
     background-color: gray;
     margin: 2px 2px 2px 2px;
 
 }
-
+#title{
+    height: 100px;
+    font-family: 'Pacifico';
+    color: white;
+}
 .trail h2{
     color: green;
 }

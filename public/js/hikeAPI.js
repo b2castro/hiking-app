@@ -31,7 +31,7 @@ function displayTrailInfo(lati, longi) {
             // Creating an element to have the rating displayed
             var anchor = $("<a href='/trailPage'>")            
             anchor.append(trailDiv);
-            var title = $("<h1>").text(name);
+            var title = $("<h1 id='title'>").text(name);
             var string = "Star Rating: ";
             for (var j = 0; j < 5; j++) {
                 if(j < stars){
@@ -104,7 +104,13 @@ function displayTrailInfo(lati, longi) {
             trailDiv.append(image);
             
             // Putting the entire trail above the previous trails
-            $("#trails-view").prepend(anchor);
+            $("#trails-view").append(anchor);
+            if((i % 2) == 0){
+                //if is even 
+                var space = $("<div class= 'col-xs-2 col-sm-2 col-md-2 col-lg-2'>")
+                $("#trails-view").append(space);
+
+            };
               
           };//end of for loop. 
         });// end of done function 
