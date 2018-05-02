@@ -2,7 +2,10 @@ Team 2Squared
 
 Team Members: Bryle Castro, Hansol You, Julian Leung, Karanbir Bains
 
+Old screen:
+![capture](https://user-images.githubusercontent.com/7214905/39101170-e0025f02-464a-11e8-8db6-1ae5283924a7.PNG)
 
+New screen:
 ![1](https://user-images.githubusercontent.com/11530423/39541598-147f82e8-4dfb-11e8-9452-4006c5b7b8ab.PNG)
 
 For this part of the milestone, we made frontend and functionality changes to the main page. The page is now centered and refined with accented colors. The individual search results are grouped into individual items that are color coded, and they are each clickable. Each object (search result) is dynamic, and once they are clicked on, they will lead to their corresponding detail page.
