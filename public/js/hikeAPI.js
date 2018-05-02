@@ -90,7 +90,7 @@ function displayTrailInfo(lati, longi) {
             }
 
 
-            // Creating an element to hold the image
+            // Creating an element to hold the: image
             var image = $("<img>").attr("src", imgURL);
             
             // Displaying the rating
@@ -99,6 +99,7 @@ function displayTrailInfo(lati, longi) {
             trailDiv.append(h2Two);
             trailDiv.append(h2Three);
             trailDiv.append(h2Four);
+        
             
             // Appending the image
             trailDiv.append(image);
@@ -107,7 +108,7 @@ function displayTrailInfo(lati, longi) {
             $("#trails-view").append(anchor);
             if((i % 2) == 0){
                 //if is even 
-                var space = $("<div class= 'col-xs-2 col-sm-2 col-md-2 col-lg-2'>")
+                var space = $("<div class= 'col-xs-2 col-sm-2 col-md-2 col-lg-2' id=" + name + " onclick = saveTrailName() >")
                 $("#trails-view").append(space);
 
             };

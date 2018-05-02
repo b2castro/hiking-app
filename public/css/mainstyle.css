@@ -21,9 +21,9 @@ img.logo {
 
 .searchBar{
     text-align: center;
-    padding-left: 45%;
     padding-top: 1.5rem;
-    
+    align-self: center;
+    padding-bottom: 1.5rem;    
 }
 
 .searchBar input{
@@ -45,6 +45,9 @@ img.logo {
     background-color: gray;
     margin: 2px 2px 2px 2px;
 
+}
+.row{
+     padding-left: 15%;
 }
 #title{
     height: 100px;
@@ -93,6 +96,7 @@ img.logo {
     width: 900px;
     margin: auto;
 }
+
 
 .flex-container2 {
     display: flex;
