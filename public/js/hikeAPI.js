@@ -1,4 +1,9 @@
 
+function saveTrailName(theId){        
+    localStorage.setItem("trailName", theId.id);
+    location.href = "/trailPage";
+}
+
 function displayTrailInfo(lati, longi) {
 
         //var trail = $(this).attr("data-name");
@@ -15,21 +20,25 @@ function displayTrailInfo(lati, longi) {
           method: "GET"
         }).done(function(response) {
           for (var i = 0; i < response.trails.length; i++) {
-            // Creating a div to hold the trail
-            // var anchor = $("<a>").attr("href", "/trailPage");
-            var trailDiv = $("<div class='trail col-xs-5 col-sm-5 col-md-5 col-lg-5' href='/trailPage'>");
+     
 
             //anchor.append(trailDiv);
               
             // Storing the rating data
             let name = response.trails[i].name;
-
+            let noSpaceName = name.replace(/-|\s/g,"");
+            
+            // Creating a div to hold the trail
+            // var anchor = $("<a>").attr("href", "/trailPage");
+            var trailDiv = $("<div class='trail col-xs-5 col-sm-5 col-md-5 col-lg-5' id= " + noSpaceName + " >");  
             let stars = Math.floor(response.trails[i].stars);
             let starVotes = response.trails[i].starVotes;
             let difficulty = response.trails[i].difficulty;
             let summary = response.trails[i].summary;
             // Creating an element to have the rating displayed
-            var anchor = $("<a href='/trailPage'>")            
+            //var anchor = $("<a href='/trailPage'>")
+           
+            var anchor = $("<a onclick=saveTrailName("+ noSpaceName +") >");   
             anchor.append(trailDiv);
             var title = $("<h1 id='title'>").text(name);
             var string = "Star Rating: ";
@@ -108,7 +117,7 @@ function displayTrailInfo(lati, longi) {
             $("#trails-view").append(anchor);
             if((i % 2) == 0){
                 //if is even 
-                var space = $("<div class= 'col-xs-2 col-sm-2 col-md-2 col-lg-2' id=" + name + " onclick = saveTrailName() >")
+                var space = $("<div class= 'col-xs-2 col-sm-2 col-md-2 col-lg-2'>");
                 $("#trails-view").append(space);
 
             };
