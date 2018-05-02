@@ -36,7 +36,7 @@ The UI will later be focusing on making the map location appear with the tracker
 
 ![7](https://user-images.githubusercontent.com/11530423/39541644-366f4960-4dfb-11e8-8560-d8911a6693b9.PNG)
 
-The comments do not show up right now, but they are being uploaded and stored to the database. We're using firebase for our main database, and we're using the firebase storage to ultimatly store images.
+The comments do not show up right now, but they are being uploaded and stored to the database. We're using firebase for our main database, and we're using the firebase storage to ultimatly store images. When the user inputs a comment, it has a temporary popup to insure that the comment has been recieved to the back end.
 
 
 Our focus in user privacy is in that the user can decide to make their commentaries on the trail anonymous if they wish, but otherwise display their information. We wanted to have a control of how much a user can show themselves with other users by implementing this system. 
