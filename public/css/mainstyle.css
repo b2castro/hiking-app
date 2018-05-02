@@ -46,6 +46,10 @@ img.logo {
     margin: 2px 2px 2px 2px;
 
 }
+
+#trail-name{
+    font-size: 30px;
+}
 .row{
      padding-left: 15%;
 }

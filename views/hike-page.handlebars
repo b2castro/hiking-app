@@ -6,13 +6,23 @@
     <link rel="stylesheet" type="text/css" href="css/mainstyle.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      
+      
     <title>TrailBlazer</title>   
+    
+    <script>
+        function getLocationName(){
+            let name = localStorage.getItem("trailName");
+            name = name.replace(/([A-Z])/g, ' $1');
+            name = name.replace(/^./, function(str){ return str.toUpperCase(); })
+             document.getElementById("trail-name").innerHTML = name;
+        } 
+    </script>
     </head>
     
   <body> <div class="flex-container">
       
     <div class="flex-item">        
-        <p><font size="30">Example Trail</font></p>
+        <p id="trail-name">Example Trail</p>
         <img src="images/Google-Maps.jpg" width="800">
         <button type="button">Add Marker</button>
     </div>
@@ -20,7 +30,7 @@
     <br>
     <br>
     <br>
-      
+    <script>getLocationName()</script>
     <div class="box">  
         <div class="flex-container2">
             <div class="flex-item">     
