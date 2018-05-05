@@ -19,6 +19,7 @@ function displayTrailInfo(lati, longi) {
           url: queryURL,
           method: "GET"
         }).done(function(response) {
+             $("#trails-view").empty();
           for (var i = 0; i < response.trails.length; i++) {
      
 
@@ -103,6 +104,7 @@ function displayTrailInfo(lati, longi) {
             var image = $("<img>").attr("src", imgURL);
             
             // Displaying the rating
+            //empty the trailDiv. 
             trailDiv.append(title);
             trailDiv.append(h2One);
             trailDiv.append(h2Two);
