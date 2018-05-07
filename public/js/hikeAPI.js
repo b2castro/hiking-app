@@ -1,8 +1,10 @@
 
-function saveTrailName(theId){        
-    localStorage.setItem("trailName", theId.id);
+function saveTrailName(trailName, trailId ){        
+    localStorage.setItem("trailName", trailName.id);
+    localStorage.setItem("trailId", trailId);
     location.href = "/trailPage";
 }
+
 
 function displayTrailInfo(lati, longi) {
 
@@ -28,6 +30,7 @@ function displayTrailInfo(lati, longi) {
             // Storing the rating data
             let name = response.trails[i].name;
             let noSpaceName = name.replace(/-|\s/g,"");
+            let trailId = response.trails[i].id;
             
             // Creating a div to hold the trail
             // var anchor = $("<a>").attr("href", "/trailPage");
@@ -39,7 +42,7 @@ function displayTrailInfo(lati, longi) {
             // Creating an element to have the rating displayed
             //var anchor = $("<a href='/trailPage'>")
            
-            var anchor = $("<a onclick=saveTrailName("+ noSpaceName +") >");   
+            var anchor = $("<a onclick=saveTrailName("+ noSpaceName +"," + trailId + ") >");   
             anchor.append(trailDiv);
             var title = $("<h1 id='title'>").text(name);
             var string = "Star Rating: ";
