@@ -40,9 +40,9 @@ img.logo {
     text-align: center;
     border-style: solid;
     border-width: thick;
-    border-color: black;
+    border-color: #fedb38;
     border-radius: 25px;
-    background-color: gray;
+    background-color: #2d2d2d;
     margin: 2px 2px 2px 2px;
 
 }
@@ -53,20 +53,33 @@ img.logo {
 .row{
      padding-left: 15%;
 }
+
+@font-face{
+    font-family: 'Simplifica';
+    src: url(SIMPLIFICA.ttf);
+}
+@font-face{
+    font-family: 'BebasNeue';
+    src: url(BebasNeue.ttf);
+}
+
 #title{
     height: 100px;
-    font-family: 'Pacifico';
+    font-family: 'BebasNeue';
     color: white;
 }
+
+
+
 .trail h2{
-    color: green;
+    color: white;
 }
 
 .trail h1{
-    color: white;
+    color: #92c14d;
 }
 .trail #summary{
-    height: 180px;
+    padding: 1rem;
 }
 
 .trail img {
@@ -74,6 +87,7 @@ img.logo {
     height: 300px;
     float: center;
     margin-bottom: 8px;
+    border-radius: 50%;
 }
 
 .flex-container{
@@ -104,4 +118,8 @@ img.logo {
 
 .flex-container2 {
     display: flex;
+}
+
+.icon{
+    border-radius: 50%;
 }

@@ -23,7 +23,6 @@ function displayTrailInfo(lati, longi) {
         }).done(function(response) {
              $("#trails-view").empty();
           for (var i = 0; i < response.trails.length; i++) {
-     
 
             //anchor.append(trailDiv);
               
@@ -34,7 +33,21 @@ function displayTrailInfo(lati, longi) {
             
             // Creating a div to hold the trail
             // var anchor = $("<a>").attr("href", "/trailPage");
-            var trailDiv = $("<div class='trail col-xs-5 col-sm-5 col-md-5 col-lg-5' id= " + noSpaceName + " >");  
+            
+            // this is the parent frame
+              
+            var trailDiv = $("<div class = 'trail col-xs-12 col-sm-12 col-md-12 col-lg-12' id = " + noSpaceName + " >");
+            //var trailDiv = $("<div class='row' id= " + noSpaceName + " >");  
+            //console.log("made trailDiv");
+              
+            // child frame for the image only
+            //var imgDiv = $("<div class = 'trail col-xs-3 col-sm-3 col-md-3 col-lg-3' id = " + noSpaceName + "Img>");
+            //console.log("made imgDiv");
+              
+            // child frame for metadata only
+            //var dataDiv = $("<div class = 'trail col-xs-9 col-sm-9 col-md-9 col-lg-9' id = " + noSpaceName+ "Data>");
+            //console.log("made dataDiv");
+              
             let stars = Math.floor(response.trails[i].stars);
             let starVotes = response.trails[i].starVotes;
             let difficulty = response.trails[i].difficulty;
@@ -44,8 +57,9 @@ function displayTrailInfo(lati, longi) {
            
             var anchor = $("<a onclick=saveTrailName("+ noSpaceName +"," + trailId + ") >");   
             anchor.append(trailDiv);
-            var title = $("<h1 id='title'>").text(name);
-            var string = "Star Rating: ";
+            
+            // calculating how many stars there are
+            var string = "";
             for (var j = 0; j < 5; j++) {
                 if(j < stars){
                     string = string + '\u2605';
@@ -54,7 +68,10 @@ function displayTrailInfo(lati, longi) {
                 }
             }
 
-            var h2Three = $("<h2>").text("Difficulty: ");
+
+            // title and difficulty together
+            var h2Three = $("<h1 id='title'>").text(name + " Difficulty: ");
+            //var h2Three = $("<h2>").text("Difficulty: ");
             var tree1 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
             var tree2 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
             var tree3 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
@@ -64,21 +81,25 @@ function displayTrailInfo(lati, longi) {
             switch(difficulty) {
                 case "green":
                     h2Three.append(tree1);
+                    //console.log("difficulty 1");
                     break;
                 case "greenBlue":
                     h2Three.append(tree1);
                     h2Three.append(tree2);
+                    //console.log("difficulty 2");
                     break;
                 case "blue":
                     h2Three.append(tree1);
                     h2Three.append(tree2);
                     h2Three.append(tree3);
+                    //console.log("difficulty 3");
                     break;
                 case "blueBlack":
                     h2Three.append(tree1);
                     h2Three.append(tree2);
                     h2Three.append(tree3);
                     h2Three.append(tree4);
+                    //console.log("difficulty 4");
                     break;
                 case "black":
                     h2Three.append(tree1);
@@ -86,15 +107,22 @@ function displayTrailInfo(lati, longi) {
                     h2Three.append(tree3);
                     h2Three.append(tree4);
                     h2Three.append(tree5);
+                    //console.log("difficulty 5");
                     break;
                 default:
                     console.log("uh oh");
                     break;
             }
-            var h2One = $("<h2>").text(string);
-            var h2Two = $("<h2>").text("Total Votes: " + starVotes);
+            
+            // stars + # of votes
+            var h2One = $("<h2>").text(string + " " + starVotes + " reviews" );
+            //console.log("h2One is " + string + " " + starVotes + " reviews");
+            
+            //var h2Two = $("<h2>").text("Total Votes: " + starVotes);
             
             var h2Four = $("<h2 id='summary'>").text("Summary: " + summary);
+            //console.log("h2Four is " + "Summary: " + summary);
+              
             var imgURL;
             if(response.trails[i].imgMedium){
                 imgURL = response.trails[i].imgMedium;
@@ -108,10 +136,10 @@ function displayTrailInfo(lati, longi) {
             
             // Displaying the rating
             //empty the trailDiv. 
-            trailDiv.append(title);
-            trailDiv.append(h2One);
-            trailDiv.append(h2Two);
+            //trailDiv.append(title);
             trailDiv.append(h2Three);
+            trailDiv.append(h2One);
+            //trailDiv.append(h2Two);
             trailDiv.append(h2Four);
         
             
@@ -122,7 +150,7 @@ function displayTrailInfo(lati, longi) {
             $("#trails-view").append(anchor);
             if((i % 2) == 0){
                 //if is even 
-                var space = $("<div class= 'col-xs-2 col-sm-2 col-md-2 col-lg-2'>");
+                var space = $("<div class= 'col-xs-12 col-sm-12 col-md-12 col-lg-12'>");
                 $("#trails-view").append(space);
 
             };
