@@ -5,7 +5,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/mainstyle.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-     
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
     </script>
     <script language="javascript" type="text/javascript">
@@ -57,14 +56,61 @@
 
             var trailName = document.getElementById("trail-name").innerHTML; 
             var theComment = document.getElementById("comments").value;
-            alert(theComment);
-
-            firebase.database().ref('/trail-names/' + trailName + "/comments" ).set({
-                  commentOne: theComment
-
-              })
-
-            alert("success");
+            var fu1 = document.getElementById("fileupload");
+            var myFile =  document.getElementById('fileupload').files[0];
+            
+            
+            if(fu1.value != ""){    
+                firebase.database().ref('/trail-names/' + trailName + "/comments/" + fu1.value.replace(".",",")).set(theComment);
+                document.getElementById("comments").value = "";
+                var storageRef = firebase.storage().ref('images/' + fu1.value);
+                storageRef.put(myFile);
+                document.getElementById('fileupload').value = "";
+                document.getElementById('fileupload').files[0] = null;
+                $('#dvPreview').empty() 
+                handleRead();
+            }
+            else{
+                firebase.database().ref('/trail-names/' + trailName + "/comments/" + "NULL" + theComment.replace(".",",")).set(theComment);
+                document.getElementById("comments").value = "";
+                document.getElementById('fileupload').value = "";
+                document.getElementById('fileupload').files[0] = null;
+                $('#dvPreview').empty() 
+                handleRead();
+            }
+        }
+        
+        /*Displays comments*/
+        function handleRead(){
+         $('#boxOfComment').empty()    
+         var trailName = document.getElementById("trail-name").innerHTML;
+          var query = firebase.database().ref('/trail-names/' + trailName + "/comments/").orderByKey();
+          query.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) { // for loop here
+              var comm = childSnapshot.val();
+              var imgName = childSnapshot.key.replace(",",".");
+              var num = imgName.search("NULL");
+              var tmpl = document.getElementById('commentDisplayBox').content.cloneNode(true);
+              if(num != 0){    
+                 var folderRef = firebase.storage().ref("images/");
+                 var contentRef = folderRef.child(imgName);
+                 contentRef.getDownloadURL().then(function( url ){
+                    tmpl.querySelector('.the_img').src = url;
+                    tmpl.querySelector('.the_comment').innerText = comm;  
+                    document.querySelector('#boxOfComment').appendChild(tmpl);
+                     
+                
+                })  
+              }
+              else{
+                  tmpl.querySelector('.the_comment').innerText = comm;
+                  document.querySelector('#boxOfComment').appendChild(tmpl);
+              }    
+                
+                 
+             
+              });     
+          });
         }
 
     </script>
@@ -79,7 +125,6 @@
         <iframe id = "widget" style="width:100%; max-width:1200px; height:410px;" frameborder="0" scrolling="no" 
         src="https://www.hikingproject.com/widget?v=3&map=1&type=trail&id=7022531&x=-13034613&y=3883727&z=6"></iframe>
         <!-- END Hiking Project -->
-        <button type="button">Add Marker</button>
     </div>
       
     <br>
@@ -87,19 +132,33 @@
     <br>
       
     <script>getLocationName()</script>
-    <div class="box">  
-        <div class="flex-container2">
-            <div class="flex-item">     
-                <img src="images/hiking.JPG" width="300">
-            </div> 
-            <div class = "comment">
-                <p>Test comment!</p>
-            </div>
-        </div>  
-    </div>      
-      
+    <div id="boxOfComment">
+    </div>
+    <template id=justComment>
+        <div class="box">  
+            <div class="flex-container2">
+                <div class = "comm">
+                    <p class="just_comment">Test comment!</p>
+                </div>
+            </div>  
+        </div>      
+    </template>  
+    <template id=commentDisplayBox>
+        <div class="box">  
+            <div class="flex-container2">
+                <div class="flex-item">     
+                    <img class="the_img" src="images/smile.PNG" width="300">
+                </div> 
+                <div class = "comment">
+                    <p class="the_comment">Test comment!</p>
+                </div>
+            </div>  
+        </div>      
+    </template>
     <br> 
+    
       
+   
     <div class="box">  
         <div class="flex-container2">
             <span>
@@ -109,8 +168,7 @@
             <input type="submit" value="Submit" onclick="handleCommentAdd()">
             </span>
             <span>
-            <input id="fileupload" type="file" />
-            <input type="submit">
+            <input id="fileupload" type="file"/>
             <div id="dvPreview" style="width: 300*px;"> 
             </div>
             </span>    
@@ -118,14 +176,9 @@
     </div>       
       
   </div>
-      
-   <script src="js/hike-page.js"></script>
-
-      
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script>
-      // Initialize Firebase
-      var config = {
+         var config = {
         apiKey: "AIzaSyCrIEYXHjRy5OTVp-92gz0gcqFjUMq4QAA",
         authDomain: "trailblazers-201721.firebaseapp.com",
         databaseURL: "https://trailblazers-201721.firebaseio.com",
@@ -133,8 +186,13 @@
         storageBucket: "trailblazers-201721.appspot.com",
         messagingSenderId: "526533295836"
       };
+
+          
       firebase.initializeApp(config);
     </script>
+    <script>handleRead()</script>
+    <script src="js/hike-page.js"></script>
+   
     </body>
     
 </html>
