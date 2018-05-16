@@ -3,6 +3,12 @@ Team 2Squared
 Team Members: Bryle Castro, Hansol You, Julian Leung, Karanbir Bains
 
 UI Page One:
+![1](https://user-images.githubusercontent.com/11530423/40136230-289e1760-58fc-11e8-9936-662e491a0b46.PNG)
+![2](https://user-images.githubusercontent.com/11530423/40136244-2f9a4c6e-58fc-11e8-9304-5f8a28daa063.PNG)
+
+The UI for the first page of the application, the page is dedicated to a single search bar and it's results. The UI changed in the fact that we've established a new logo, and the individual search results are now fully horizontal instead of having two per row. It makes it a lot less cluttered and makes it easier for the user to distinguish one object from another.
+There was also an improvement in the font to make the title actually legible. The color scheme was also swapped out to further enhance legibility as well as aesthetic standards. The pale yellow accent faintly highlights the grey box to make it pop out, and the object box is now a darker grey to make the white a lot more visible. Nevertheless, the fonts are now all white to create consistency.
+
 
 
 UI Page Two:  
