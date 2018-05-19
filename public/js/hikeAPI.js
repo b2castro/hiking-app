@@ -70,7 +70,7 @@ function displayTrailInfo(lati, longi) {
 
 
             // title and difficulty together
-            var h2Three = $("<h1 id='title'>").text(name + " Difficulty: ");
+            var h2Three = $("<h1 class='col-xs-4 col-sm-4 col-md-4 col-lg-4' id='Difficulty'>").text(" Difficulty: ");
             //var h2Three = $("<h2>").text("Difficulty: ");
             var tree1 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
             var tree2 = $("<span>").addClass("glyphicon glyphicon-tree-conifer");
@@ -117,9 +117,9 @@ function displayTrailInfo(lati, longi) {
             // stars + # of votes
             var h2One = $("<h2>").text(string + " " + starVotes + " reviews" );
             //console.log("h2One is " + string + " " + starVotes + " reviews");
-            
+            h2Three.append(h2One);
             //var h2Two = $("<h2>").text("Total Votes: " + starVotes);
-            
+            var h2Five = $("<h2 id='name'>").text(name);
             var h2Four = $("<h2 id='summary'>").text("Summary: " + summary);
             //console.log("h2Four is " + "Summary: " + summary);
               
@@ -132,19 +132,29 @@ function displayTrailInfo(lati, longi) {
 
 
             // Creating an element to hold the: image
-            var image = $("<img>").attr("src", imgURL);
+            var image = $("<img class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>").attr("src", imgURL);
             
             // Displaying the rating
             //empty the trailDiv. 
             //trailDiv.append(title);
-            trailDiv.append(h2Three);
-            trailDiv.append(h2One);
-            //trailDiv.append(h2Two);
-            trailDiv.append(h2Four);
+            var text = $("<div id'textDiv' class='col-xs-4 col-sm-4 col-md-4 col-lg-4' >");
+            text.append(h2Five);
+            //text.append(h2Three);
+            //text.append(h2One);
+            //text.append(h2Two);
+            text.append(h2Four);
+        
+            // trailDiv.append(h2Three);
+            // trailDiv.append(h2One);
+            // //trailDiv.append(h2Two);
+            // trailDiv.append(h2Four);
         
             
             // Appending the image
             trailDiv.append(image);
+            trailDiv.append(text);
+            trailDiv.append(h2Three);
+
             
             // Putting the entire trail above the previous trails
             $("#trails-view").append(anchor);
