@@ -16,7 +16,14 @@ allows the user to travel back to the home page of our website regardless of whe
 application. Another improvement that was included in this milestone was the updated functionality of 
 the search bar located on the home page. Before, the search bar was only usable through clicking the
 search button after entering in a location as in put. However, the search bar can now be used via the
-enter key on a user's keyboard. This brings expected functionality to the user.
+enter key on a user's keyboard. This brings expected functionality to the user. Another visual 
+improvement that was added throughout the application is the inclusion of the application's name located
+in the title bar of the website. The title bar has also been added to each individual trail page in 
+order to update uniformity throughout the website. Several visual updates have been included into the
+main search feature. Before, the trails would be displayed with information in a vertical orientation.
+However, trails now display information in a horizontal orientation. This allows the application to 
+save visual space. Pictures are now located on the far left, with the title and summary in the middle,
+and the difficulty and user rating in the far right.
 
 Data Visualization Screenshots:
 ![ui1](https://user-images.githubusercontent.com/18273959/40735768-e08395f4-63f0-11e8-95e0-7e4310a5f27e.png)
