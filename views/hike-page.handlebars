@@ -1,3 +1,13 @@
+<!--
+    Filename: hike-page.handlebars
+    
+    Description: 
+
+    This file handles the display of a specific trail name and its map. This file also contains the required javascript functions
+    that allows users to submit comments and images in regard to the trail. Mreover, clicking on the number 2 logo will redirect the user
+    to the hompage of the application.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +17,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
     </script>
+    
     <script language="javascript" type="text/javascript">
+        /* Anonymous function handles the preparation for submission of an image.
+         * Provides a preview for the image that user wants to submit. 
+         */
         $(function () {
             $("#fileupload").change(function () {
                 $("#dvPreview").html("");
@@ -39,9 +53,8 @@
       
     <title>TrailBlazer</title>   
     
-      
-      
     <script>
+        /*Handles the display of trail name at the top of the page*/
         function getLocationName(){
             let name = localStorage.getItem("trailName");
             let trailId = localStorage.getItem("trailId");
@@ -52,6 +65,7 @@
              document.getElementById("trail-name").innerHTML = name;
         } 
         
+        /*Handles the submission of comments and pictures*/
         function handleCommentAdd(){
 
             var trailName = document.getElementById("trail-name").innerHTML; 
@@ -59,7 +73,7 @@
             var fu1 = document.getElementById("fileupload");
             var myFile =  document.getElementById('fileupload').files[0];
             
-            
+            /*Handles submission for when user submits an image and a comment for the trail*/
             if(fu1.value != ""){    
                 firebase.database().ref('/trail-names/' + trailName + "/comments/" + fu1.value.replace(".",",")).set(theComment);
                 document.getElementById("comments").value = "";
@@ -70,6 +84,7 @@
                 $('#dvPreview').empty() 
                 handleRead();
             }
+            /*Handles submission for when user submits just a comment for the trail*/
             else{
                 firebase.database().ref('/trail-names/' + trailName + "/comments/" + "NULL" + theComment.replace(".",",")).set(theComment);
                 document.getElementById("comments").value = "";
@@ -80,7 +95,7 @@
             }
         }
         
-        /*Displays comments*/
+        /*Handles the population of comments and pictures in the comment section.*/
         function handleRead(){
          $('#boxOfComment').empty()    
          var trailName = document.getElementById("trail-name").innerHTML;
@@ -91,7 +106,9 @@
               var imgName = childSnapshot.key.replace(",",".");
               var num = imgName.search("NULL");
               var tmpl = document.getElementById('commentDisplayBox').content.cloneNode(true);
-              if(num != 0){    
+              if(num != 0){
+                  
+                 /*Fetch image associated with a comment for the trail and display them*/
                  var folderRef = firebase.storage().ref("images/");
                  var contentRef = folderRef.child(imgName);
                  contentRef.getDownloadURL().then(function( url ){
@@ -103,6 +120,7 @@
                 })  
               }
               else{
+                  /*Display comment about the trail*/   
                   tmpl.querySelector('.the_comment').innerText = comm;
                   document.querySelector('#boxOfComment').appendChild(tmpl);
               }    
@@ -144,7 +162,9 @@
                     <p class="just_comment">Test comment!</p>
                 </div>
             </div>  
-        </div>      
+        </div> 
+    
+    <!-- Template displaying comments. -->    
     </template>  
     <template id=commentDisplayBox>
         <div class="box">  
@@ -160,8 +180,7 @@
     </template>
     <br> 
     
-      
-   
+    <!-- File upload interface. -->  
     <div class="box">  
         <div class="flex-container2">
             <span>
@@ -179,6 +198,7 @@
     </div>       
       
   </div>
+    <!-- Firebase access and keys -->  
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script>
          var config = {

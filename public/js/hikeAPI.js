@@ -1,18 +1,29 @@
+/*
+   FileName: homepage.handlebars
+   
+   Description: This file contains the functions necessary to display
+                the respected trails based on a given location by using 
+                HikingProject API.
+*/
 
+/* Saves trail name onto local storage for later use*/
 function saveTrailName(trailName, trailId ){        
     localStorage.setItem("trailName", trailName.id);
     localStorage.setItem("trailId", trailId);
     location.href = "/trailPage";
 }
 
-
+/* 
+    This function uses the passed latitude and longitude to 
+    display ten nearest trails onto homepage.handlebars in 
+    respect to the given latitude longitude. 
+*/
 function displayTrailInfo(lati, longi) {
 
         //var trail = $(this).attr("data-name");
         let lat = lati;
         let long = longi;
-        let maxDistance = 10;
-        //https://www.hikingproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&key=200252138-f373bf62d2f3d526e56392c58af99811                                                                                                 
+        let maxDistance = 10;                                                                                                
         var queryURL = 'https://www.hikingproject.com/data/get-trails?' + 'lat=' + lat + '&lon=' + long + '&maxDistance=' + maxDistance + '&key=200252138-f373bf62d2f3d526e56392c58af99811';
         
         console.log("the queryURL is + ", queryURL);
@@ -23,8 +34,6 @@ function displayTrailInfo(lati, longi) {
         }).done(function(response) {
              $("#trails-view").empty();
           for (var i = 0; i < response.trails.length; i++) {
-
-            //anchor.append(trailDiv);
               
             // Storing the rating data
             let name = response.trails[i].name;
@@ -32,21 +41,9 @@ function displayTrailInfo(lati, longi) {
             let trailId = response.trails[i].id;
             
             // Creating a div to hold the trail
-            // var anchor = $("<a>").attr("href", "/trailPage");
-            
             // this is the parent frame
               
             var trailDiv = $("<div class = 'trail col-xs-12 col-sm-12 col-md-12 col-lg-12' id = " + noSpaceName + " >");
-            //var trailDiv = $("<div class='row' id= " + noSpaceName + " >");  
-            //console.log("made trailDiv");
-              
-            // child frame for the image only
-            //var imgDiv = $("<div class = 'trail col-xs-3 col-sm-3 col-md-3 col-lg-3' id = " + noSpaceName + "Img>");
-            //console.log("made imgDiv");
-              
-            // child frame for metadata only
-            //var dataDiv = $("<div class = 'trail col-xs-9 col-sm-9 col-md-9 col-lg-9' id = " + noSpaceName+ "Data>");
-            //console.log("made dataDiv");
               
             let stars = Math.floor(response.trails[i].stars);
             let starVotes = response.trails[i].starVotes;
@@ -139,17 +136,9 @@ function displayTrailInfo(lati, longi) {
             //trailDiv.append(title);
             var text = $("<div id'textDiv' class='col-xs-4 col-sm-4 col-md-4 col-lg-4' >");
             text.append(h2Five);
-            //text.append(h2Three);
-            //text.append(h2One);
-            //text.append(h2Two);
             text.append(h2Four);
         
-            // trailDiv.append(h2Three);
-            // trailDiv.append(h2One);
-            // //trailDiv.append(h2Two);
-            // trailDiv.append(h2Four);
-        
-            
+     
             // Appending the image
             trailDiv.append(image);
             trailDiv.append(text);

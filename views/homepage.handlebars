@@ -1,3 +1,14 @@
+<!-- 
+    Filename: homepage.handlebars
+    
+    Description: 
+
+    This file allows a user to search a location such as Sand Diego, CA using the search bar; the search bar
+    user Google API's autocomplete location search system to do this. Upon searching a location, the app will
+    then display the ten hiking trails that are near the provided location. Clicking on any of the displayed 
+    trails will redirect to the user to hike-page.handlebars.
+
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +22,7 @@
     <title>TrailBlazer</title>   
     
       <script>
+        /*Handles the display of trails onto the page based on nearest location searched*/
         function enterLoad(){
              var autocomplete = new google.maps.places.Autocomplete(document.getElementById("txtautocomplete"));
         
@@ -24,12 +36,12 @@
       
     </head>
     
-  
-    
   <body>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed in=true&libraries=places"></script>
     <script type="text/javascript">
     google.maps.event.addDomListener(window, 'load', intilize);
+    
+    /*Handles the display of trails onto the page based on nearest location searched*/    
     function intilize() {
         var autocomplete = new google.maps.places.Autocomplete(document.getElementById("txtautocomplete"));
         
@@ -38,9 +50,10 @@
             displayTrailInfo(place.geometry.location.lat(),place.geometry.location.lng());
         });       
     };
-         
     </script>
-        <main class="container">
+    
+      
+      <main class="container">
             <!-- navbar -->
             <ul class="row navbar">
                 <li class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><a href="/"><img class="logo" src="images/logo.png" alt="trailblazer logo" height="90" width"160"></a></li>
@@ -53,10 +66,6 @@
             <label id="lblresult"></label>
             <button type="button">Search</button>
         </form>
-            
-            
-            
-        <!-- <div class="row" id="trails-view"> </div> -->
             
         <div id="trails-view"> </div>
 
