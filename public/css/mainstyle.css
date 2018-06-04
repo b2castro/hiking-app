@@ -1,3 +1,4 @@
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -41,7 +42,7 @@ img.logo {
     text-align: center;
     border-style: solid;
     border-width: thick;
-    border-color: #fedb38;
+    border-color: #7c7c7c;
     border-radius: 25px;
     background-color: #2d2d2d;
     margin: 1% 1% 1% 1%;
@@ -108,7 +109,7 @@ img.logo {
     border-radius: 25px;
     border-style: solid;
     border-width: thick;
-    border-color: #fedb38;
+    border-color: white;
     padding: 10px;
     width: 300px;
     margin: auto;
@@ -139,4 +140,7 @@ img.logo {
 
 .icon{
     border-radius: 50%;
+}
+.page {
+    background-color: #FBFF95;
 }
