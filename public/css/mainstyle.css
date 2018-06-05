@@ -1,146 +1,127 @@
+/*
+    Filename: mainstyle.css
+    
+    Description: This file is for custom styling the homepage.handlebars 
+    and hike-page.handlebars.
+*/
 
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
 }
-
 li {
-    float: left;
-    color: white;
+	float: left;
+	color: white;
 }
-
-
 img.logo {
-    display: block;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    margin-left: 1.5rem;
+	display: block;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	margin-left: 1.5rem;
 }
-
-
-.searchBar{
-    text-align: center;
-    padding-top: 1.5rem;
-    align-self: center;
-    padding-bottom: 1.5rem;    
+.searchBar {
+	text-align: center;
+	padding-top: 1.5rem;
+	align-self: center;
+	padding-bottom: 1.5rem;
 }
-
-.searchBar input{
-    width: 500px;
-    height: 30px;
-    float: center;
+.searchBar input {
+	width: 500px;
+	height: 30px;
+	float: center;
 }
-
-.searchBar button{
-    height: 30px;
+.searchBar button {
+	height: 30px;
 }
-
-.trail{
-    text-align: center;
-    border-style: solid;
-    border-width: thick;
-    border-color: #7c7c7c;
-    border-radius: 25px;
-    background-color: #2d2d2d;
-    margin: 1% 1% 1% 1%;
-
+.trail {
+	text-align: center;
+	border-style: solid;
+	border-width: thick;
+	border-color: #7c7c7c;
+	border-radius: 25px;
+	background-color: #2d2d2d;
+	margin: 1% 1% 1% 1%;
 }
-
-#trail-name{
-    font-size: 30px;
+#trail-name {
+	font-size: 30px;
 }
-.row{
-     padding-left: 15%;
+.row {
+	padding-left: 15%;
 }
-
-@font-face{
-    font-family: 'Simplifica';
-    src: url(SIMPLIFICA.ttf);
+@font-face {
+	font-family: 'Simplifica';
+	src: url(SIMPLIFICA.ttf);
 }
-@font-face{
-    font-family: 'BebasNeue';
-    src: url(BebasNeue.ttf);
+@font-face {
+	font-family: 'BebasNeue';
+	src: url(BebasNeue.ttf);
 }
-
-#title{
-    height: 100px;
-    font-family: 'BebasNeue';
-    color: white;
+#title {
+	height: 100px;
+	font-family: 'BebasNeue';
+	color: white;
 }
-
-
-
-.trail h2{
-    color: white;
+.trail h2 {
+	color: white;
 }
-
-.trail h1{
-    color: #92c14d;
+.trail h1 {
+	color: #92c14d;
 }
-.trail #summary{
-    padding: 1rem;
+.trail #summary {
+	padding: 1rem;
 }
-
 .trail img {
-    width: 300px;
-    height: 300px;
-    float: center;
-    margin-bottom: 8px;
-    border-radius: 50%;
+	width: 300px;
+	height: 300px;
+	float: center;
+	margin-bottom: 8px;
+	border-radius: 50%;
 }
-
-.flex-container{
-    align-items: center;
-    justify-content: center;
+.flex-container {
+	align-items: center;
+	justify-content: center;
 }
-
-.flex-item{
-    margin: auto;
-    text-align: center;
+.flex-item {
+	margin: auto;
+	text-align: center;
 }
-
 .comment {
-    font-size: 150%;
-    text-align: center;
-    border: 5px; 
-    border-radius: 25px;
-    border-style: solid;
-    border-width: thick;
-    border-color: white;
-    padding: 10px;
-    width: 300px;
-    margin: auto;
-    background-color: #72716b;
+	font-size: 150%;
+	text-align: center;
+	border: 5px;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: thick;
+	border-color: white;
+	padding: 10px;
+	width: 300px;
+	margin: auto;
+	background-color: #72716b;
 }
-
 .comment p {
-    color: white;
+	color: white;
 }
-
 .box {
-    border: 5px; 
-    border-radius: 25px;
-    border-style: solid;
-    border-width: thick;
-    border-color: #5e9b04;
-    background-color: #2d2d2d;
-    padding: 10px;
-    width: 900px;
-    margin: auto;
-    margin-top: 1%;
+	border: 5px;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: thick;
+	border-color: #5e9b04;
+	background-color: #2d2d2d;
+	padding: 10px;
+	width: 900px;
+	margin: auto;
+	margin-top: 1%;
 }
-
-
 .flex-container2 {
-    display: flex;
+	display: flex;
 }
-
-.icon{
-    border-radius: 50%;
+.icon {
+	border-radius: 50%;
 }
 .page {
-    background-color: #FBFF95;
+	background-color: #FBFF95;
 }

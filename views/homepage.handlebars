@@ -11,80 +11,76 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/mainstyle.css">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>TrailBlazer</title>   
-    
-      <script>
-        /*Handles the display of trails onto the page based on nearest location searched*/
-        function enterLoad(){
-             var autocomplete = new google.maps.places.Autocomplete(document.getElementById("txtautocomplete"));
-        
-            google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            var place = autocomplete.getPlace();
-            displayTrailInfo(place.geometry.location.lat(),place.geometry.location.lng());
-            });   
-        
-        }
-      </script>
-      
-    </head>
-    
-  <body class='page'>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed in=true&libraries=places"></script>
-    <script type="text/javascript">
-    google.maps.event.addDomListener(window, 'load', intilize);
-    
-    /*Handles the display of trails onto the page based on nearest location searched*/    
-    function intilize() {
-        var autocomplete = new google.maps.places.Autocomplete(document.getElementById("txtautocomplete"));
-        
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            var place = autocomplete.getPlace();
-            displayTrailInfo(place.geometry.location.lat(),place.geometry.location.lng());
-        });       
-    };
-    </script>
-    
-      
-      <main class="container">
-            <!-- navbar -->
-            <ul class="row navbar">
-                <li class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><a href="/"><img class="logo" src="images/logo.png" alt="trailblazer logo" height="90" width"160"></a></li>
-                <li class='col-xs-8 col-sm-8 col-md-8 col-lg-8'><h1>TrailBlazer</h1></li>
-            </ul>
-
-
-        <form class="searchBar">
-            <input type="text" onclick="this.select()" onKeyDown="if(event.keyCode==13){   event.preventDefault();   enterLoad();}" id="txtautocomplete" placeholder="Search Hikes Near">
-            <label id="lblresult"></label>
-            <button type="button">Search</button>
-        </form>
-            
-        <div id="trails-view"> </div>
-
-        </main>
-      <script src="js/hikeAPI.js"></script>
-      
-      
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCrIEYXHjRy5OTVp-92gz0gcqFjUMq4QAA",
-        authDomain: "trailblazers-201721.firebaseapp.com",
-        databaseURL: "https://trailblazers-201721.firebaseio.com",
-        projectId: "trailblazers-201721",
-        storageBucket: "trailblazers-201721.appspot.com",
-        messagingSenderId: "526533295836"
-      };
-      firebase.initializeApp(config);
-    </script>
-  </body>
+<head>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+	<link href="css/mainstyle.css" rel="stylesheet" type="text/css">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+	<title>TrailBlazer</title>
+	<script>
+	       /*Handles the display of trails onto the page based on nearest location searched*/
+	       function enterLoad(){
+	            var autocomplete = new google.maps.places.Autocomplete(document.getElementById("txtautocomplete"));
+	       
+	           google.maps.event.addListener(autocomplete, 'place_changed', function () {
+	           var place = autocomplete.getPlace();
+	           displayTrailInfo(place.geometry.location.lat(),place.geometry.location.lng());
+	           });   
+	       
+	       }
+	</script>
+</head>
+<body class='page'>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed%20in=true&libraries=places">
+	</script> 
+	<script type="text/javascript">
+	   google.maps.event.addDomListener(window, 'load', intilize);
+	   
+	   /*Handles the display of trails onto the page based on nearest location searched*/    
+	   function intilize() {
+	       var autocomplete = new google.maps.places.Autocomplete(document.getElementById("txtautocomplete"));
+	       
+	       google.maps.event.addListener(autocomplete, 'place_changed', function () {
+	           var place = autocomplete.getPlace();
+	           displayTrailInfo(place.geometry.location.lat(),place.geometry.location.lng());
+	       });       
+	   };
+	</script>
+	<main class="container">
+		<!-- navbar -->
+		<ul class="row navbar">
+			<li class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+				<a href="/"><img alt="trailblazer logo" class="logo" height="90" src="images/logo.png"></a>
+			</li>
+			<li class='col-xs-8 col-sm-8 col-md-8 col-lg-8'>
+				<h1>TrailBlazer</h1>
+			</li>
+		</ul>
+		<form class="searchBar">
+			<input id="txtautocomplete" onclick="this.select()" onkeydown="if(event.keyCode==13){ event.preventDefault(); enterLoad();}" placeholder="Search Hikes Near" type="text"> <label id="lblresult"></label> <button type="button">Search</button>
+		</form>
+		<div id="trails-view"></div>
+	</main>
+	<script src="js/hikeAPI.js">
+	</script> 
+	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js">
+	</script> 
+	<script>
+	     // Initialize Firebase
+	     var config = {
+	       apiKey: "AIzaSyCrIEYXHjRy5OTVp-92gz0gcqFjUMq4QAA",
+	       authDomain: "trailblazers-201721.firebaseapp.com",
+	       databaseURL: "https://trailblazers-201721.firebaseio.com",
+	       projectId: "trailblazers-201721",
+	       storageBucket: "trailblazers-201721.appspot.com",
+	       messagingSenderId: "526533295836"
+	     };
+	     firebase.initializeApp(config);
+	</script>
+</body>
 </html>

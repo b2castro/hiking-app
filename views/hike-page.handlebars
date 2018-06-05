@@ -7,222 +7,209 @@
     that allows users to submit comments and images in regard to the trail. Mreover, clicking on the number 2 logo will redirect the user
     to the hompage of the application.
 -->
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/mainstyle.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-    </script>
-    
-    <script language="javascript" type="text/javascript">
-        /* Anonymous function handles the preparation for submission of an image.
-         * Provides a preview for the image that user wants to submit. 
-         */
-        $(function () {
-            $("#fileupload").change(function () {
-                $("#dvPreview").html("");
-                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
-                if (regex.test($(this).val().toLowerCase())) {
-                    if ($.browser.msie && parseFloat(jQuery.browser.version) <= 9.0) {
-                        $("#dvPreview").show();
-                        $("#dvPreview")[0].filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = $(this).val();
-                    }
-                    else {
-                        if (typeof (FileReader) != "undefined") {
-                            $("#dvPreview").show();
-                            $("#dvPreview").append("<img />");
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                $("#dvPreview img").attr("src", e.target.result);
-                            }
-                            reader.readAsDataURL($(this)[0].files[0]);
-                        } else {
-                            alert("This browser does not support FileReader.");
-                        }
-                    }
-                } else {
-                    alert("Please upload a valid image file.");
-                }
-            });
-        });
-    </script>     
-      
-    <title>TrailBlazer</title>   
-    
-    <script>
-        /*Handles the display of trail name at the top of the page*/
-        function getLocationName(){
-            let name = localStorage.getItem("trailName");
-            let trailId = localStorage.getItem("trailId");
-            let widgetUrl = "https://www.hikingproject.com/widget?v=3&map=1&type=trail&id=" + trailId +"&x=-13034613&y=3883727&z=6";
-            $("#widget").attr("src", widgetUrl);
-            name = name.replace(/([A-Z])/g, ' $1');
-            name = name.replace(/^./, function(str){ return str.toUpperCase(); })
-             document.getElementById("trail-name").innerHTML = name;
-        } 
-        function handleRefresh(){
-            handleCommentAdd();
-            setTimeout(handleRead,1000);
-            
-        }
-        
-        /*Handles the submission of comments and pictures*/
-        function handleCommentAdd(){
-            
-            var trailName = document.getElementById("trail-name").innerHTML; 
-            var theComment = document.getElementById("comments").value;
-            var fu1 = document.getElementById("fileupload");
-            var myFile =  document.getElementById('fileupload').files[0];
-            
-            /*Handles submission for when user submits an image and a comment for the trail*/
-            if(fu1.value != ""){    
-                firebase.database().ref('/trail-names/' + trailName + "/comments/" + fu1.value.replace(".",",")).set(theComment);
-                document.getElementById("comments").value = "";
-                var storageRef = firebase.storage().ref('images/' + fu1.value);
-                storageRef.put(myFile);
-                document.getElementById('fileupload').value = "";
-                document.getElementById('fileupload').files[0] = null;
-                $('#dvPreview').empty() 
-                
-            }
-            /*Handles submission for when user submits just a comment for the trail*/
-            else{
-                firebase.database().ref('/trail-names/' + trailName + "/comments/" + "NULL" + theComment.replace(".",",")).set(theComment);
-                document.getElementById("comments").value = "";
-                document.getElementById('fileupload').value = "";
-                document.getElementById('fileupload').files[0] = null;
-                $('#dvPreview').empty() 
-               
-            }
-            
-        
-        }
-        
-        /*Handles the population of comments and pictures in the comment section.*/
-        function handleRead(){
-         $('#boxOfComment').empty()    
-         var trailName = document.getElementById("trail-name").innerHTML;
-          var query = firebase.database().ref('/trail-names/' + trailName + "/comments/").orderByKey();
-          query.once("value").then(function(snapshot) {
-            snapshot.forEach(function(childSnapshot) { // for loop here
-              var comm = childSnapshot.val();
-              var imgName = childSnapshot.key.replace(",",".");
-              var num = imgName.search("NULL");
-              var tmpl = document.getElementById('commentDisplayBox').content.cloneNode(true);
-              if(num != 0){
-                  
-                 /*Fetch image associated with a comment for the trail and display them*/
-                 var folderRef = firebase.storage().ref("images/");
-                 var contentRef = folderRef.child(imgName);
-                 contentRef.getDownloadURL().then(function( url ){
-                    tmpl.querySelector('.the_img').src = url;
-                    tmpl.querySelector('.the_comment').innerText = comm;  
-                    document.querySelector('#boxOfComment').appendChild(tmpl);
-                     
-                
-                })  
-              }
-              else{
-                  /*Display comment about the trail*/   
-                  tmpl.querySelector('.the_comment').innerText = comm;
-                  document.querySelector('#boxOfComment').appendChild(tmpl);
-              }    
-                
-                 
-             
-              });     
-          });
-        }
+<head>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+	<link href="css/mainstyle.css" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript">
+	</script>
+	<script language="javascript" type="text/javascript">
+	       /* Anonymous function handles the preparation for submission of an image.
+	        * Provides a preview for the image that user wants to submit. 
+	        */
+	       $(function () {
+	           $("#fileupload").change(function () {
+	               $("#dvPreview").html("");
+	               var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+	               if (regex.test($(this).val().toLowerCase())) {
+	                   if ($.browser.msie && parseFloat(jQuery.browser.version) <= 9.0) {
+	                       $("#dvPreview").show();
+	                       $("#dvPreview")[0].filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = $(this).val();
+	                   }
+	                   else {
+	                       if (typeof (FileReader) != "undefined") {
+	                           $("#dvPreview").show();
+	                           $("#dvPreview").append("<img />");
+	                           var reader = new FileReader();
+	                           reader.onload = function (e) {
+	                               $("#dvPreview img").attr("src", e.target.result);
+	                           }
+	                           reader.readAsDataURL($(this)[0].files[0]);
+	                       } else {
+	                           alert("This browser does not support FileReader.");
+	                       }
+	                   }
+	               } else {
+	                   alert("Please upload a valid image file.");
+	               }
+	           });
+	       });
+	</script>
+	<title>TrailBlazer</title>
+	<script>
+	       /*Handles the display of trail name at the top of the page*/
+	       function getLocationName(){
+	           let name = localStorage.getItem("trailName");
+	           let trailId = localStorage.getItem("trailId");
+	           let widgetUrl = "https://www.hikingproject.com/widget?v=3&map=1&type=trail&id=" + trailId +"&x=-13034613&y=3883727&z=6";
+	           $("#widget").attr("src", widgetUrl);
+	           name = name.replace(/([A-Z])/g, ' $1');
+	           name = name.replace(/^./, function(str){ return str.toUpperCase(); })
+	            document.getElementById("trail-name").innerHTML = name;
+	       } 
+	       function handleRefresh(){
+	           handleCommentAdd();
+	           setTimeout(handleRead,1000);
+	           
+	       }
+	       
+	       /*Handles the submission of comments and pictures*/
+	       function handleCommentAdd(){
+	           
+	           var trailName = document.getElementById("trail-name").innerHTML; 
+	           var theComment = document.getElementById("comments").value;
+	           var fu1 = document.getElementById("fileupload");
+	           var myFile =  document.getElementById('fileupload').files[0];
+	           
+	           /*Handles submission for when user submits an image and a comment for the trail*/
+	           if(fu1.value != ""){    
+	               firebase.database().ref('/trail-names/' + trailName + "/comments/" + fu1.value.replace(".",",")).set(theComment);
+	               document.getElementById("comments").value = "";
+	               var storageRef = firebase.storage().ref('images/' + fu1.value);
+	               storageRef.put(myFile);
+	               document.getElementById('fileupload').value = "";
+	               document.getElementById('fileupload').files[0] = null;
+	               $('#dvPreview').empty() 
+	               
+	           }
+	           /*Handles submission for when user submits just a comment for the trail*/
+	           else{
+	               firebase.database().ref('/trail-names/' + trailName + "/comments/" + "NULL" + theComment.replace(".",",")).set(theComment);
+	               document.getElementById("comments").value = "";
+	               document.getElementById('fileupload').value = "";
+	               document.getElementById('fileupload').files[0] = null;
+	               $('#dvPreview').empty() 
+	              
+	           }
+	           
+	       
+	       }
+	       
+	       /*Handles the population of comments and pictures in the comment section.*/
+	       function handleRead(){
+	        $('#boxOfComment').empty()    
+	        var trailName = document.getElementById("trail-name").innerHTML;
+	         var query = firebase.database().ref('/trail-names/' + trailName + "/comments/").orderByKey();
+	         query.once("value").then(function(snapshot) {
+	           snapshot.forEach(function(childSnapshot) { // for loop here
+	             var comm = childSnapshot.val();
+	             var imgName = childSnapshot.key.replace(",",".");
+	             var num = imgName.search("NULL");
+	             var tmpl = document.getElementById('commentDisplayBox').content.cloneNode(true);
+	             if(num != 0){
+	                 
+	                /*Fetch image associated with a comment for the trail and display them*/
+	                var folderRef = firebase.storage().ref("images/");
+	                var contentRef = folderRef.child(imgName);
+	                contentRef.getDownloadURL().then(function( url ){
+	                   tmpl.querySelector('.the_img').src = url;
+	                   tmpl.querySelector('.the_comment').innerText = comm;  
+	                   document.querySelector('#boxOfComment').appendChild(tmpl);
+	                    
+	               
+	               })  
+	             }
+	             else{
+	                 /*Display comment about the trail*/   
+	                 tmpl.querySelector('.the_comment').innerText = comm;
+	                 document.querySelector('#boxOfComment').appendChild(tmpl);
+	             }    
+	               
+	                
+	            
+	             });     
+	         });
+	       }
 
-    </script>
-    </head>
-    
-  <body class='page'> <div class="container">
-    <ul class="row navbar">
-        <li class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><a href="/"><img class="logo" src="images/logo.png" alt="trailblazer logo" height="90" width"160"></a></li>
-        <li class='col-xs-8 col-sm-8 col-md-8 col-lg-8'><h1>TrailBlazer</h1></li>
-    </ul>      
-    <div class="flex-item">        
-        <p id="trail-name">Example Trail</p>
-        <!-- <img src="images/Google-Maps.jpg" width="800"> -->
-        <!-- BEGIN Hiking Project -->
-        <iframe id = "widget" style="width:100%; max-width:1200px; height:410px;" frameborder="0" scrolling="no" 
-        src="https://www.hikingproject.com/widget?v=3&map=1&type=trail&id=7022531&x=-13034613&y=3883727&z=6"></iframe>
-        <!-- END Hiking Project -->
-    </div>
-      
-    <br>
-    <br>
-    <br>
-      
-    <script>getLocationName()</script>
-    <div id="boxOfComment">
-    </div>
-    <template id=justComment>
-        <div class="box">  
-            <div class="flex-container2">
-                <div class = "comm">
-                    <p class="just_comment">Test comment!</p>
-                </div>
-            </div>  
-        </div> 
-    
-    <!-- Template displaying comments. -->    
-    </template>  
-    <template id=commentDisplayBox>
-        <div class="box">  
-            <div class="flex-container2">
-                <div class="flex-item">     
-                    <img class="the_img" src="images/noImage.png" width="300">
-                </div> 
-                <div class = "comment">
-                    <p class="the_comment">Test comment!</p>
-                </div>
-            </div>  
-        </div>      
-    </template>
-    <br> 
-    
-    <!-- File upload interface. -->  
-    <div class="box">  
-        <div class="flex-container2">
-            <span>
-            <div>
-                <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;"></textarea>
-            </div>
-            <input type="submit" value="Submit" onclick="handleRefresh()">
-            </span>
-            <span>
-            <input id="fileupload" type="file"/>
-            <div id="dvPreview" style="width: 300*px;"> 
-            </div>
-            </span>    
-        </div>  
-    </div>       
-      
-  </div>
-    <!-- Firebase access and keys -->  
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script>
-         var config = {
-        apiKey: "AIzaSyCrIEYXHjRy5OTVp-92gz0gcqFjUMq4QAA",
-        authDomain: "trailblazers-201721.firebaseapp.com",
-        databaseURL: "https://trailblazers-201721.firebaseio.com",
-        projectId: "trailblazers-201721",
-        storageBucket: "trailblazers-201721.appspot.com",
-        messagingSenderId: "526533295836"
-      };
+	</script>
+</head>
+<body class='page'>
+	<div class="container">
+		<ul class="row navbar">
+			<li class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+				<a href="/"><img alt="trailblazer logo" class="logo" height="90" src="images/logo.png"></a>
+			</li>
+			<li class='col-xs-8 col-sm-8 col-md-8 col-lg-8'>
+				<h1>TrailBlazer</h1>
+			</li>
+		</ul>
+		<div class="flex-item">
+			<p id="trail-name">Example Trail</p><!-- <img src="images/Google-Maps.jpg" width="800"> -->
+			<!-- BEGIN Hiking Project -->
+			<iframe frameborder="0" id="widget" name="widget" scrolling="no" src="https://www.hikingproject.com/widget?v=3&map=1&type=trail&id=7022531&x=-13034613&y=3883727&z=6" style="width:100%; max-width:1200px; height:410px;"></iframe> <!-- END Hiking Project -->
+		</div><br>
+		<br>
+		<br>
+		<script>
+		getLocationName()
+		</script>
+		<div id="boxOfComment"></div>
+		<template id="justComment">
+			<div class="box">
+				<div class="flex-container2">
+					<div class="comm">
+						<p class="just_comment">Test comment!</p>
+					</div>
+				</div>
+			</div><!-- Template displaying comments. -->
+		</template>
+		<template id="commentDisplayBox">
+			<div class="box">
+				<div class="flex-container2">
+					<div class="flex-item"><img class="the_img" src="images/noImage.png" width="300"></div>
+					<div class="comment">
+						<p class="the_comment">Test comment!</p>
+					</div>
+				</div>
+			</div>
+		</template><br>
+		<!-- File upload interface. -->
+		<div class="box">
+			<div class="flex-container2">
+				<span></span>
+				<div>
+					<span>
+					<textarea id="comments" name="comments" style="font-family:sans-serif;font-size:1.2em;"></textarea></span>
+				</div><span><input onclick="handleRefresh()" type="submit" value="Submit"></span> <span><input id="fileupload" type="file"></span>
+				<div id="dvPreview" style="width: 300*px;">
+					<span></span>
+				</div>
+			</div>
+		</div>
+	</div><!-- Firebase access and keys -->
+	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js">
+	</script> 
+	<script>
+	        var config = {
+	       apiKey: "AIzaSyCrIEYXHjRy5OTVp-92gz0gcqFjUMq4QAA",
+	       authDomain: "trailblazers-201721.firebaseapp.com",
+	       databaseURL: "https://trailblazers-201721.firebaseio.com",
+	       projectId: "trailblazers-201721",
+	       storageBucket: "trailblazers-201721.appspot.com",
+	       messagingSenderId: "526533295836"
+	     };
 
-          
-      firebase.initializeApp(config);
-    </script>
-    <script>handleRead()</script>
-    <script src="js/hike-page.js"></script>
-   
-    </body>
-    
+	         
+	     firebase.initializeApp(config);
+	</script> 
+	<script>
+	handleRead()
+	</script> 
+	<script src="js/hike-page.js">
+	</script>
+</body>
 </html>
