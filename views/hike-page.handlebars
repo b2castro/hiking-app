@@ -64,6 +64,11 @@
             name = name.replace(/^./, function(str){ return str.toUpperCase(); })
              document.getElementById("trail-name").innerHTML = name;
         } 
+        function handleRefresh(){
+            handleCommentAdd();
+            setTimeout(handleRead,1000);
+            
+        }
         
         /*Handles the submission of comments and pictures*/
         function handleCommentAdd(){
@@ -82,8 +87,7 @@
                 document.getElementById('fileupload').value = "";
                 document.getElementById('fileupload').files[0] = null;
                 $('#dvPreview').empty() 
-                //handleRead();
-                location.reload();
+                
             }
             /*Handles submission for when user submits just a comment for the trail*/
             else{
@@ -92,9 +96,9 @@
                 document.getElementById('fileupload').value = "";
                 document.getElementById('fileupload').files[0] = null;
                 $('#dvPreview').empty() 
-                //handleRead();
-                location.reload();
+               
             }
+            
         
         }
         
@@ -190,7 +194,7 @@
             <div>
                 <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;"></textarea>
             </div>
-            <input type="submit" value="Submit" onclick="handleCommentAdd()">
+            <input type="submit" value="Submit" onclick="handleRefresh()">
             </span>
             <span>
             <input id="fileupload" type="file"/>
